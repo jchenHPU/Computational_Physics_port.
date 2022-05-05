@@ -19,3 +19,18 @@ the code goes through fluid dynamics and the assumption for this is that an obje
 
 # ising Model
 the Ising Model is the code using the monte carlos simulation and the Metropolis Algorthim.
+
+A small trick can be done to optimally calculate the dE in 2D. Lets assume that spin S[i, j] is flipped, then only the nearest neighbor spins will account for a change in energy. There are two ways to calculate dE:
+
+ 1.First way is the simplest- take the exponential of the change in energy. Remember calculating the exponential N^2 times for each Monte Carlo move can get expensive!
+ 2.Second way is the least expensive in terms of computation time. Here you use the fact that spin can take values 1 and -1, and hence, there are only two possibilities for an energy increasing move. They are
+  d         d           u         u    
+d d d =>  d u d  or   u u u =>  u d u   #change in energy is 8
+  d         d           u         u   
+
+
+
+  d         d           u         u    
+d d u =>  d u u  or   u u d =>  u d d   #change in energy is 4
+  d         d           u         u 
+Here u and d, respectively, denote the up and down configuration of the spins, which correspond to value 1 and -1.
